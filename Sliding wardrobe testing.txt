@@ -1,0 +1,54 @@
+
+
+import java.awt.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.testng.Assert;
+
+public class Work1 {
+
+	public static void main(String[] args) throws InterruptedException {
+		WebDriver driver=new FirefoxDriver();
+		driver.get("http://www.customfurnish.com/wardrobe-designs/");
+		driver.manage().window().maximize();
+		String st= driver.getTitle();
+		System.out.println(st);
+		
+		// clicking on type 
+		driver.findElement(By.xpath(".//*[@id='templateFilterDiv']/li[1]/a")).click();
+		Thread.sleep(3000);
+		//clicking on subtype-sliding
+		driver.findElement(By.xpath(".//*[@id='templateFilterDiv']/li[1]/div/div[2]/label[2]/a/span")).click();
+		Thread.sleep(5000);
+		
+		
+		//taking text to which we have to compare 
+		String text = driver.findElement(By.xpath("//span[text()='Sliding']")).getText();
+		System.out.println(text);
+		Thread.sleep(3000);
+		
+		
+		//taking text of first type shown in wardrode catalogue
+		//int ssize = driver.findElements(By.xpath("html/body/div[1]/div[5]/div[9]/div/div[18]/div[2]")).size();
+		int ssize = driver.findElements(By.xpath("html/body/div[1]/div[5]/div[9]/div/div")).size();
+		//*[@id='productListItem']/div/div[3]/div[2]
+		//*[@id='productListItem']/div/div[18]/div[2]
+		int coun = 3;
+		System.out.println("size :"+ssize);
+		for(int i=0;i<6;i++){
+			
+			String st1= driver.findElement(By.xpath(".//*[@id='productListItem']/div/div["+coun+"]/div[2]")).getText();
+			coun +=3;
+           // Assert.assertEquals(text, st1.co);
+			if(st1.contains(text)){
+				System.out.println("is their");
+			}else{
+				System.out.println("no...");
+			}
+		}
+		
+	}
+
+}

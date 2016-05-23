@@ -1,0 +1,79 @@
+package demo2;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class Buying {
+
+	public static void main(String[] args) throws InterruptedException
+	{
+		WebDriver driver= new FirefoxDriver();
+		driver.manage().window().maximize();
+		driver.get("http://root.test.customfurnish.com/wardrobe-designs/");
+		driver.findElement(By.xpath("html/body/div[1]/div[5]/div[9]/div/div[3]/div[2]/div[14]/form/input[3]")).click();
+		driver.findElement(By.xpath("html/body/div[1]/div[5]/div[2]/div[3]/div/div/div[2]/div[1]/a")).click();
+		Thread.sleep(4000);
+		driver.findElement(By.xpath("html/body/div[5]/div[4]/div[1]/div/form/div[1]/input")).sendKeys("varuntheraj@gmail.com");
+		driver.findElement(By.xpath("html/body/div[5]/div[4]/div[1]/div/form/div[2]/input")).sendKeys("dolbyhome");
+		driver.findElement(By.xpath("html/body/div[5]/div[4]/div[1]/div/ul[2]/li[2]/a")).click();
+		//driver.findElement(By.id("loginSave")).click();
+		Thread.sleep(9000);
+		//driver.manage().timeouts().implicitlyWait(9, TimeUnit.SECONDS);
+		//driver.findElement(By.xpath(".//*[@id='saveDetails']")).click();
+		driver.findElement(By.xpath(".//*[@id='body-wrapper']/div[5]/div[2]/div[3]/div/div/div[2]/div[1]/a")).click();
+		Thread.sleep(6000);
+		driver.findElement(By.xpath("//button[@id='saveDetails']")).click();
+		Thread.sleep(8000);
+		driver.findElement(By.xpath("html/body/div[1]/div[5]/div[1]/div[3]/div[2]/div/div/button[4]")).click();//final pay
+		//driver.findElement(By.id("ebsPay")).click(); by id 
+		Thread.sleep(8000);
+		driver.findElement(By.xpath("html/body/div[1]/div/table[2]/tbody/tr/td/div[5]/form/table/tbody/tr[2]/td[3]/div/input")).sendKeys("varun raj");
+		driver.findElement(By.xpath("html/body/div[1]/div/table[2]/tbody/tr/td/div[5]/form/table/tbody/tr[3]/td[3]/div/input[1]")).sendKeys("4111");
+		driver.findElement(By.xpath("html/body/div[1]/div/table[2]/tbody/tr/td/div[5]/form/table/tbody/tr[3]/td[3]/div/input[2]")).sendKeys("1111");
+		driver.findElement(By.xpath("html/body/div[1]/div/table[2]/tbody/tr/td/div[5]/form/table/tbody/tr[3]/td[3]/div/input[3]")).sendKeys("1111");
+		driver.findElement(By.xpath("html/body/div[1]/div/table[2]/tbody/tr/td/div[5]/form/table/tbody/tr[3]/td[3]/div/input[4]")).sendKeys("1111");
+		Select se=new Select(driver.findElement(By.id("frm_exp_month")));
+		se.selectByIndex(7);
+		Thread.sleep(2000);
+		Select yr=new Select(driver.findElement(By.id("frm_exp_year")));
+		//yr.selectByIndex(0);
+		yr.selectByValue("16");
+		//Thread.sleep(2000);
+		driver.findElement(By.xpath("html/body/div[1]/div/table[2]/tbody/tr/td/div[5]/form/table/tbody/tr[5]/td[3]/div/input")).sendKeys("123"); //cvv
+		driver.findElement(By.xpath("html/body/div[1]/div/table[2]/tbody/tr/td/div[5]/form/table/tbody/tr[6]/td[2]/input")).click();
+		Thread.sleep(9000);
+		if(driver.getTitle().contains("Furniture Online - Buy Custom design furniture online in India"))
+		{
+			
+		WebElement we=driver.findElement(By.xpath(".//*[@id='body-wrapper']/div[5]/div[1]/div[1]/h4"));
+		
+		if(we.isDisplayed())
+		{
+			System.out.println("Order placed successfully");
+		}
+		else
+		{
+			System.out.println("Error in the order");
+		}
+		
+		
+		}
+		
+		/*if(driver.getPageSource().contains("Thank You for placing order at customfurnish.com"))
+		{
+			System.out.println("Order placed successfully");
+			}
+		else
+		{
+			System.out.println("Error in the order");
+		}
+*/
+
+	}
+
+}

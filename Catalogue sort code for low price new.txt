@@ -1,0 +1,64 @@
+package demo2;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class CatalogueSortLow
+	{
+
+	public static void main(String[] args) throws InterruptedException 
+	{
+	WebDriver driver= new FirefoxDriver();
+	driver.manage().window().maximize();
+	driver.get("http://root.test.customfurnish.com/wardrobe-designs/");
+	//clicking on sort 
+	driver.findElement(By.xpath("html/body/div[1]/div[5]/div[3]/div/form/ul/li[6]/a")).click();
+	//clicking on lowprice
+	driver.findElement(By.id("sortByLowPrice")).click();
+	Thread.sleep(5000);
+	//taking the price from first element
+	int size=driver.findElements(By.xpath("html/body/div[1]/div[5]/div[9]/div/div")).size();
+	int si=size/3;
+	System.out.println("Total Elements- " + si);
+String primary=driver.findElement(By.xpath("html/body/div[1]/div[5]/div[9]/div/div[3]/div[2]/div[2]/p/span")).getText();
+	System.out.println("Price of First Wardrobe after sort-" + primary);	
+	primary=primary.substring(4);
+	primary=primary.replaceAll(",","");
+	int x=Integer.parseInt(primary);
+	System.out.println(x);
+	int count=3;
+	int z=x;
+	si=si-1;
+	for(int i=1;i<=si;i++)
+	{
+		
+		/*String primary=driver.findElement(By.xpath("html/body/div[1]/div[5]/div[9]/div/div[3]/div[2]/div[2]/p/span")).getText();
+		//System.out.println("Price of First Wardrobe after sort-" + primary);	
+		primary=primary.substring(4);
+		primary=primary.replaceAll(",","");
+		int x=Integer.parseInt(primary);
+		System.out.println(x);*/
+		
+		//int z=x;
+		System.out.println(z);
+		String secondary=driver.findElement(By.xpath("html/body/div[1]/div[5]/div[9]/div/div["+count+"]/div[2]/div[2]/p/span")).getText();
+		count=count+3;
+		secondary=secondary.substring(4);
+		secondary=secondary.replaceAll(",", "");
+		int y=Integer.parseInt(secondary);
+		System.out.println(y);
+		
+		if(z<=y)
+		{
+			System.out.println(" perfect Sort");
+		}
+		else
+		{
+			System.out.println("Sort Error");
+		}
+		z=y;
+		}
+	}
+	}
+		

@@ -1,0 +1,107 @@
+package demo2;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class Allthreetypes {
+
+	public static void main(String[] args) throws InterruptedException  {
+		WebDriver driver= new FirefoxDriver();
+		driver.get("http://root.test.customfurnish.com/wardrobe-designs/");
+		driver.manage().window().maximize();
+		String s = driver.getTitle();
+		System.out.println(s);
+		
+		//clicking on type button
+		driver.findElement(By.xpath(".//*[@id='templateFilterDiv']/li[1]/a")).click();
+		driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+		
+		//clicking on FULLPANEL DOORTYPE 	
+		driver.findElement(By.xpath(".//*[@id='templateFilterDiv']/li[1]/div/div[2]/label[1]")).click();
+		Thread.sleep(5000);
+	
+		//retrieving the text to compare with
+		String st=driver.findElement(By.xpath(".//*[@id='templateFilterDiv']/li[1]/div/div[2]/label[1]/a/span")).getText();
+		System.out.println(st);
+		for (int i=1;i<=35;i++)
+		{
+			int count=3;
+		String st1=driver.findElement(By.xpath(".//*[@id='productListItem']/div/div["+count+"]/div[2]/div[4]/p/span")).getText();
+		count+=3;
+		System.out.println(st1);
+		//driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+		if(st1.contains(st))
+		{
+			System.out.println("No error in Doortype");
+		}
+		else
+		{
+			System.out.println("Error in Doortype");
+		}
+			
+		}		
+		//driver.manage().timeouts().implicitlyWait(25, TimeUnit.SECONDS);
+		driver.findElement(By.xpath(".//*[@id='templateFilterDiv']/li[1]/div/div[2]/label[1]")).click();
+		Thread.sleep(9000);
+		
+		//--------------------------------------------------------------------------------------------------
+		
+		//clicking on subtype-sliding
+				driver.findElement(By.xpath(".//*[@id='templateFilterDiv']/li[1]/div/div[2]/label[2]")).click();
+				Thread.sleep(5000);
+				
+				
+				//taking text to which we have to compare 
+				String text = driver.findElement(By.xpath("//span[text()='Sliding']")).getText();
+				System.out.println(text);
+				Thread.sleep(3000);
+				
+				
+				//taking text of first type shown in wardrode catalogue
+				int ssize = driver.findElements(By.xpath("html/body/div[1]/div[5]/div[9]/div/div")).size();
+				int coun = 3;
+				System.out.println("size :"+ssize);
+				for(int i=0;i<6;i++){
+					
+					String st1= driver.findElement(By.xpath(".//*[@id='productListItem']/div/div["+coun+"]/div[2]")).getText();
+					coun +=3;
+		    			if(st1.contains(text))
+		    			{
+						System.out.println("No Error");
+					}else{
+						System.out.println("Wrong Type found");
+					}
+				}
+				driver.findElement(By.xpath(".//*[@id='templateFilterDiv']/li[1]/div/div[2]/label[2]")).click();
+				Thread.sleep(8000);
+		//==================================================================================================
+				//clicking on subtype =full panel with external drawers
+				driver.findElement(By.xpath(".//*[@id='templateFilterDiv']/li[1]/div/div[2]/label[3]/a/span")).click();
+				Thread.sleep(3000);
+				//driver.manage().timeouts().implicitlyWait(6,TimeUnit.SECONDS);
+				
+				//Finding the text to compare with
+				String st3=driver.findElement(By.xpath(".//*[@id='templateFilterDiv']/li[1]/div/div[2]/label[3]/a/span")).getText();
+				System.out.println(st);
+				Thread.sleep(3000);
+				//driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
+			
+				for(int i=0;i<=35;i++)
+				{
+					int count=3;	
+					String st1=driver.findElement(By.xpath(".//*[@id='productListItem']/div/div["+count+"]/div[2]/div[4]/p/span")).getText();
+					count=count+3;
+					System.out.println(st1);
+					if(st1.toLowerCase().contains(st3.toLowerCase())){
+					System.out.println("Exact type found");    
+				   }
+				else{
+					System.out.println("Wrong type found");
+					}		
+				}
+
+		}
+	}

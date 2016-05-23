@@ -1,0 +1,17 @@
+public static void main(String[] args) throws InterruptedException {
+		
+		int count;
+		WebDriver driver=new FirefoxDriver();
+		driver.get("http://root.test.customfurnish.com/wardrobe-designs/");
+		driver.manage().window().maximize();
+		String st= driver.getTitle();
+		System.out.println(st);
+		driver.findElement(By.xpath(".//*[@id='templateFilterDiv']/li[1]/a")).click();
+		Thread.sleep(3000);
+		driver.findElement(By.xpath(".//*[@id='templateFilterDiv']/li[1]/div/div[2]/label[2]/a/span")).click();
+		Thread.sleep(3000);
+		String text = driver.findElement(By.xpath("//span[text()='Sliding']")).getText();
+		System.out.println(text);
+		String st1= driver.findElement(By.xpath(".//*[@id='productListItem']/div/div[3]/div[2]/div[4]/p/span")).getText();
+		System.out.println(st1);
+	//	String st2= driver.findElement(By.clas

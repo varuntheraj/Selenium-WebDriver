@@ -1,0 +1,45 @@
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class Work3 {
+
+	public static void main(String[] args) throws InterruptedException {
+		WebDriver driver = new FirefoxDriver();
+		driver.get("http://www.customfurnish.com/wardrobe-designs");
+		driver.manage().window().maximize();
+		
+		//clicking on type
+		driver.findElement(By.xpath(".//*[@id='templateFilterDiv']/li[1]/a")).click();
+		Thread.sleep(3000);
+		
+		//clicking on subtype =full panel with external drawers
+		driver.findElement(By.xpath(".//*[@id='templateFilterDiv']/li[1]/div/div[2]/label[3]/a/span")).click();
+		driver.manage().timeouts().implicitlyWait(4,TimeUnit.SECONDS);
+		
+		//Finding the text to compare with
+		String st=driver.findElement(By.xpath(".//*[@id='templateFilterDiv']/li[1]/div/div[2]/label[3]/a/span")).getText();
+		System.out.println(st);
+		
+		driver.manage().timeouts().implicitlyWait(4, TimeUnit.SECONDS);
+	
+		for(int i=0;i<=35;i++)
+		{
+			int count=3;	
+			String st1=driver.findElement(By.xpath(".//*[@id='productListItem']/div/div["+count+"]/div[2]/div[4]/p/span")).getText();
+			count=count+3;
+			System.out.println(st1);
+			//*[@id='productListItem']/div/div[3]/div[2]
+			//*[@id='productListItem']/div/div[6]/div[2]
+			if(st1.toLowerCase().contains(st.toLowerCase())){
+			System.out.println("Exact type found");    
+		   }
+		else{
+			System.out.println("Wrong type found");
+			}		
+		}
+	}
+
+}

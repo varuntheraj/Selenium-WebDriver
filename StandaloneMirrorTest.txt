@@ -1,0 +1,43 @@
+package demo2;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
+
+public class MirrorTest1 
+{
+
+		public static void main(String[] args) throws InterruptedException 
+		{
+			System.setProperty("webdriver.chrome.driver", "C:\\Users\\Hinshitsu it\\Downloads\\chromedriver.exe");
+			WebDriver driver= new ChromeDriver();
+			driver.manage().window().maximize();
+			driver.get("http://root.test.customfurnish.com/wardrobe/dimensions");
+			//driver.findElement(By.xpath("html/body/div[1]/div[5]/div[9]/div/div[3]/div[2]/div[2]/p/span")).click();
+			Select select =new Select(driver.findElement(By.xpath("html/body/div[1]/div[7]/div[1]/div[3]/form/div/div[1]/div[3]/div/ul/li[1]/select")));
+			select.selectByValue("10");
+			//select.selectByIndex(9);
+			driver.findElement(By.xpath("html/body/div[1]/div[7]/div[1]/div[3]/form/div/div[2]/a")).click();
+			driver.findElement(By.xpath("html/body/div[1]/div[7]/div[1]/form[1]/div/div[1]/button")).click();
+			driver.findElement(By.xpath("html/body/div[1]/div[7]/div[1]/div[1]/div/div[1]/div[1]/div[1]/section/div[5]/label")).click();
+			WebElement mir=driver.findElement(By.xpath("html/body/div[1]/div[7]/div[1]/div[1]/div/div[1]/div[1]/div[1]/section/div[5]/div/ul/li[1]/img"));
+			Actions act=new Actions(driver);
+			act.dragAndDropBy(mir, 600, 150).perform();
+			Thread.sleep(3000);
+			act.dragAndDropBy(mir, 400, 150).perform(); //working one -placed mirror on second door
+			//act.moveByOffset(400, 150).perform();
+			
+			
+			
+			
+			
+			
+			
+		
+
+		}
+
+}

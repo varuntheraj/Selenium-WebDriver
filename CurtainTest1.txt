@@ -1,0 +1,28 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class Print11 {
+
+	public static void main(String[] args) throws InterruptedException {
+	
+		WebDriver driver= new FirefoxDriver();
+		driver.manage().window().maximize();
+		driver.get("http://www.customfurnish.com/curtains-online/");
+		Thread.sleep(2000);
+		driver.findElement(By.xpath(".//*[@id='curtainBannerImage']/div/a")).click();
+		driver.findElement(By.xpath(".//*[@id='curtainStyle']/div[2]/ul/li[2]/a/div/div[3]/button")).click();
+		for(int i=1;i<=4;i++)
+		{
+			
+			driver.findElement(By.xpath(".//*[@id='fabricCurtainOptionValuesWithPagination']/ul/li["+i+"]/div[1]/a[1]/img")).click();
+				
+			
+		}
+		
+		
+		
+		
+}
+	}
+

@@ -1,0 +1,93 @@
+package demo2;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+
+public class StandaloneBuying 
+{
+
+	public static void main(String[] args) throws InterruptedException
+	{
+		WebDriver driver= new FirefoxDriver();
+		driver.manage().window().maximize();
+		driver.get("http://root.test.customfurnish.com/wardrobe/dimensions");
+		Select se= new Select(driver.findElement(By.xpath("html/body/div[1]/div[7]/div[1]/div[3]/form/div/div[1]/div[3]/div/ul/li[1]/select")));
+		se.selectByValue("10");
+		//click on create wardrobe
+		driver.findElement(By.xpath("html/body/div[1]/div[7]/div[1]/div[3]/form/div/div[2]/a")).click();
+		//clicking on fullpanel
+		driver.findElement(By.xpath("html/body/div[1]/div[7]/div[1]/form[1]/div/div[1]/button")).click();
+		//clickin on loft
+		driver.findElement(By.xpath("html/body/div[1]/div[7]/div[1]/div[1]/div/div[1]/div[1]/div[1]/section/div[10]/label")).click();
+		//clickin on add loft
+		driver.findElement(By.xpath("html/body/div[1]/div[7]/div[1]/div[1]/div/div[1]/div[1]/div[1]/section/div[10]/div/ul/li[2]/img")).click();
+		//clicking on addloft popup
+		driver.findElement(By.xpath("html/body/div[1]/div[7]/div[1]/div[1]/div/div[1]/div[1]/div[1]/section/div[10]/div/ul/div/div[2]/div[2]/div[2]/div[1]/span")).click();
+		Thread.sleep(4000);
+		//clicking on Customise interior
+		driver.findElement(By.xpath("html/body/div[1]/div[7]/div[1]/div[1]/div/div[1]/div[1]/div[2]/div/div[1]/div[8]/div[1]/div")).click();
+		//driver.findElement(By.id("internalDesignMode")).click(); // alternative for customise interior
+		//clickin on complete customisation 
+		driver.findElement(By.xpath("html/body/div[1]/div[7]/div[1]/div[1]/div/div[1]/div[1]/div[2]/div/div[1]/div[8]/div[2]/div[2]")).click();
+		Thread.sleep(5000);
+		//proceed order				
+		driver.findElement(By.xpath("html/body/div[1]/div[7]/div[2]/div[2]/div[2]/a")).click();
+		//book now					
+		Thread.sleep(3000);
+		driver.findElement(By.xpath("html/body/div[1]/div[7]/div[2]/div[2]/div[2]/a")).click();
+		//booknow pincode popup
+		driver.findElement(By.xpath("html/body/div[1]/div[7]/div[2]/div[2]/div[2]/form/ul/div/input")).sendKeys("500018");
+		//click on check
+		Thread.sleep(4000);
+		driver.findElement(By.xpath("html/body/div[1]/div[7]/div[2]/div[2]/div[2]/form/ul/input")).click();
+		Thread.sleep(6000);
+		//click on booknow
+		driver.findElement(By.xpath("html/body/div[1]/div[5]/div[2]/div[3]/div/div/div[2]/div[1]/a")).click();
+		Thread.sleep(7000);
+		//login
+		driver.findElement(By.xpath("html/body/div[5]/div[4]/div[1]/div/form/div[1]/input")).sendKeys("varuntheraj@gmail.com");
+		driver.findElement(By.xpath("html/body/div[5]/div[4]/div[1]/div/form/div[2]/input")).sendKeys("dolbyhome");
+		driver.findElement(By.xpath("html/body/div[5]/div[4]/div[1]/div/ul[2]/li[2]/a")).click();
+		Thread.sleep(9000);
+		//paynow1
+		driver.findElement(By.xpath("html/body/div[1]/div[5]/div[1]/div[3]/div[2]/div/div/button[2]")).click();
+		Thread.sleep(9000);
+		//payfinal
+		driver.findElement(By.xpath("html/body/div[1]/div[5]/div[1]/div[3]/div[2]/div/div/button[4]")).click();
+		
+		//payment page started
+		Thread.sleep(9000);
+		driver.findElement(By.xpath("html/body/div[1]/div/table[2]/tbody/tr/td/div[5]/form/table/tbody/tr[2]/td[3]/div/input")).sendKeys("varun raj");
+		driver.findElement(By.xpath("html/body/div[1]/div/table[2]/tbody/tr/td/div[5]/form/table/tbody/tr[3]/td[3]/div/input[1]")).sendKeys("4111");
+		driver.findElement(By.xpath("html/body/div[1]/div/table[2]/tbody/tr/td/div[5]/form/table/tbody/tr[3]/td[3]/div/input[2]")).sendKeys("1111");
+		driver.findElement(By.xpath("html/body/div[1]/div/table[2]/tbody/tr/td/div[5]/form/table/tbody/tr[3]/td[3]/div/input[3]")).sendKeys("1111");
+		driver.findElement(By.xpath("html/body/div[1]/div/table[2]/tbody/tr/td/div[5]/form/table/tbody/tr[3]/td[3]/div/input[4]")).sendKeys("1111");
+		Select dr=new Select(driver.findElement(By.id("frm_exp_month")));
+		dr.selectByIndex(7);
+		Thread.sleep(2000);
+		Select yr=new Select(driver.findElement(By.id("frm_exp_year")));
+		yr.selectByValue("16");
+		//Thread.sleep(2000);
+		driver.findElement(By.xpath("html/body/div[1]/div/table[2]/tbody/tr/td/div[5]/form/table/tbody/tr[5]/td[3]/div/input")).sendKeys("123"); //cvv
+		driver.findElement(By.xpath("html/body/div[1]/div/table[2]/tbody/tr/td/div[5]/form/table/tbody/tr[6]/td[2]/input")).click();
+		Thread.sleep(9000);	
+		//payment finsihed
+		String st=driver.getTitle();
+		System.out.println(st);
+		//if(st.contains("Furniture Online  - Buy Custom furniture online"))
+		//{
+			//WebElement te=driver.findElement(By.xpath("html/body/div[1]/div[5]/div[2]/div/div[1]/div[1]"));
+			WebElement te=driver.findElement(By.xpath(".//*[@id='body-wrapper']/div[5]/div[1]"));
+		if(te.isDisplayed())
+		{
+			System.out.println("Order placed successfully");
+		}
+		else
+		{
+			System.out.println("Error in the order");
+		}
+		}
+	}
